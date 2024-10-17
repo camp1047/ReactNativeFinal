@@ -29,6 +29,7 @@ const Calendar = ({ onDateSelected }) => {
     };
 
     return (
+        
         <View style={styles.container}>
             <View style={styles.options}>
             <TouchableOpacity style={styles.dropdown} onPress={() => setMonthContainerVisible(!monthContainerVisible)}>
@@ -105,11 +106,13 @@ const Calendar = ({ onDateSelected }) => {
 const styles = StyleSheet.create({
     container: {
         padding: 10,
+        
     },
     options: {
         flexDirection: 'column',
         justifyContent: 'space-between',
         marginBottom: 10,
+        
     },
     dropdown: {
         display: 'flex',
@@ -150,11 +153,15 @@ const styles = StyleSheet.create({
     weekDaysContainer: {
         display: 'flex',
         flexDirection: 'row',
+        marginLeft: -5,
+        width: 345,
         // justifyContent: 'space-between',
     },
     daysContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+        width: 335,
+        
     },
     day: {
         width: '14.28%',

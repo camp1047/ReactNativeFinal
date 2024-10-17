@@ -6,6 +6,7 @@ import { DataProvider } from './DataContext';
 import HomeScreen from './screens/HomeScreen';
 import AddPerson from './screens/AddPerson';
 import IdeaScreen from './screens/IdeaScreen';
+import AddIdea from './screens/AddIdea';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,11 @@ const App = () => {
             name="IdeaScreen"
             component={IdeaScreen}
             options={{ title: "Idea Screen" }}
+          />
+          <Stack.Screen 
+            name="AddIdea"
+            component={AddIdea}
+            options={{ title: "Add Idea" }}
           />
         </Stack.Navigator>
       </NavigationContainer>

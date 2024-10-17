@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, FlatList, Button, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, TouchableOpacity, Image, StyleSheet, Alert } from 'react-native';
 import { DataContext } from '../DataContext';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
@@ -15,11 +15,29 @@ export default IdeaScreen = () => {
     setIdeas(personIdeas);
   }, [personId]);
 
-  const handleDeleteIdea = async (ideaId) => {
-    await deleteIdea(personId, ideaId);
-    const updatedIdeas = getIdeasForPerson(personId);
-    setIdeas(updatedIdeas);
+  const handleDeleteIdea = (ideaId) => {
+    Alert.alert(
+      "Confirm Delete",
+      "Are you sure you want to delete this idea?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Deletion cancelled"),
+          style: "cancel"
+        },
+        {
+          text: "Delete",
+          onPress: async () => {
+            await deleteIdea(personId, ideaId);
+            setIdeas(currentIdeas => currentIdeas.filter(idea => idea.id !== ideaId));
+          },
+          style: 'destructive'
+        }
+      ],
+      { cancelable: false }
+    );
   };
+  
 
   const renderItem = ({ item }) => (
     <View style={styles.ideaItem}>
